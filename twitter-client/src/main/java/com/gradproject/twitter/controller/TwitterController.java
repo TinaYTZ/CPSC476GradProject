@@ -1,0 +1,33 @@
+package com.gradproject.twitter.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.social.twitter.api.Tweet;
+import org.springframework.social.twitter.api.Twitter;
+
+
+
+@RestController
+@RequestMapping(TwitterController.Twitter_Base_URI)
+
+public class TwitterController {
+	public static final String Twitter_Base_URI="/svc/v1/tweets";
+	@Autowired 
+	private Twitter twitter;
+	@RequestMapping(value="{hashTag}", produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<Tweet> getTweets(@PathVariable final String hashTag ){
+		return twitter.searchOperations().search(hashTag, 20).getTweets();
+	}
+	@RequestMapping(produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<Tweet> getMyTweets(){
+		return twitter.timelineOperations().getUserTimeline("youtingdada");
+		
+	}
+
+}
