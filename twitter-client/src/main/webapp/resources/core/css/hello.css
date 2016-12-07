@@ -1,0 +1,12 @@
+footer{
+	position: fixed;
+	bottom:0px;
+	padding:2px;
+}
+.jumbotron{
+	background:url("twitterbg.png");
+	background-repeat: no-repeat;
+}
+.myClass{
+	font-size: 40px;
+}
